@@ -67,7 +67,7 @@
                 </div>
             </div>
         </section>
-        <section class="facility-overview">
+        <section class="facility-overview reveal-on-scroll">
             <div class="facility-container">
                 <h2 class="section-title">Quick <span class="accent">Facility</span> Overview</h2>
                 <div class="facility-grid">
@@ -86,7 +86,7 @@
                 </div>
             </div>
         </section>
-        <section class="fitness-revolution">
+        <section class="fitness-revolution reveal-on-scroll bounce-on-scroll">
             <div class="fitness-container">
                 <div class="fitness-copy">
                     <h2>IronCore is not just a gym — it's a <span class="accent">fitness revolution</span></h2>
@@ -146,6 +146,21 @@
             </div>
         </div>
     </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    entry.target.classList.toggle('is-visible', entry.isIntersecting);
+                });
+            }, {
+                threshold: 0.35
+            });
+
+            document.querySelectorAll('.reveal-on-scroll').forEach((element) => {
+                observer.observe(element);
+            });
+        });
+    </script>
 </body>
 
 </html>
