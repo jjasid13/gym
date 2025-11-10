@@ -150,10 +150,14 @@
         document.addEventListener('DOMContentLoaded', () => {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach((entry) => {
-                    entry.target.classList.toggle('is-visible', entry.isIntersecting);
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    } else if (entry.boundingClientRect.top > 0) {
+                        entry.target.classList.remove('is-visible');
+                    }
                 });
             }, {
-                threshold: 0.35
+                threshold: 0.45
             });
 
             document.querySelectorAll('.reveal-on-scroll').forEach((element) => {
